@@ -14,13 +14,26 @@ public enum GenereMusicale {
     AMBIENT("Ambient"),
     ELETTRONICA("Elettronica");
 
-    //vedi
     private final String nomeVisualizzato;
 
     GenereMusicale(String nomeVisualizzato){
         this.nomeVisualizzato = nomeVisualizzato;
     }
 
-    //altro
+    public String getNomeVisualizzato(){
+        return nomeVisualizzato;
+    }
+
+    //metodo per conversione stringa
+    public static GenereMusicale conv(String testo){
+        if(testo == null){
+            throw new IllegalArgumentException("il genere musicale non può essere nullo");
+        }
+        //continua
+    }
+
+    public String toString(){
+        return nomeVisualizzato;
+    }
 
 }
