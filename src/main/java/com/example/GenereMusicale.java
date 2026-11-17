@@ -26,8 +26,8 @@ public enum GenereMusicale {
 
     //metodo per conversione stringa
     public static GenereMusicale conv(String testo){
-        if(testo == null){
-            throw new IllegalArgumentException("il genere musicale non può essere nullo");
+        if(testo == null || testo.isBlank()){  //oppure trim().isEmpty()
+            throw new IllegalArgumentException("il genere musicale non può essere nullo o vuoto");
         }
         //continua
     }
