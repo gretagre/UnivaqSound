@@ -1,7 +1,11 @@
-package com.example;
-//da mettere in sotto-package .model
+package com.example.model;
+
+import java.io.Serializable;
 import java.util.List;
-//altri import
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class Artista {
     private String nomeArte;

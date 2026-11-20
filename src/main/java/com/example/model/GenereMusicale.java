@@ -1,4 +1,4 @@
-package com.example;
+package com.example.model;
 
 public enum GenereMusicale {
     POP("Pop"),
@@ -25,7 +25,7 @@ public enum GenereMusicale {
     }
 
     //metodo per conversione stringa
-    public static GenereMusicale conv(String testo){
+    public static GenereMusicale daStringa(String testo){
         if(testo == null || testo.isBlank()){  //oppure trim().isEmpty()
             throw new IllegalArgumentException("il genere musicale non può essere nullo o vuoto");
         }
