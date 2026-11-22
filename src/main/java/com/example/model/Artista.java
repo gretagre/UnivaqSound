@@ -25,6 +25,9 @@ public abstract class Artista {
         return nomeArte;
     }
 
+    public void setNomeArte(){}
+
+
     public String getBiografia(){
         return biografia;
     }
@@ -37,7 +40,6 @@ public abstract class Artista {
         //return ecc
     }
 
-    //metodi setter
 
 }
 
