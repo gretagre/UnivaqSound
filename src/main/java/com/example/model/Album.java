@@ -134,6 +134,22 @@ public class Album {
     public int getDurataTotale(){}
 
 
+
+    @Override
+    public boolean equals(Object o){
+        if(this == 0) return true;
+        if(!(o instanceof Album)) return false;
+        Album album = (Album) o;
+        return annoPubblicazione == album.annoPubblicazione && Objects.equals(titolo, album.titolo) && Objects.equals(artista, album.artista);
+    }   
+
     @Override 
-    
+    public int HashCode(){
+        return Objects.hash(titolo, annoPubblicazione, artista);
+    }
+
+    @Override 
+    public String toString(){
+        return titolo + ", " + annoPubblicazione + ", " + genere;
+    }
 }
