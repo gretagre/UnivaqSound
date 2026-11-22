@@ -131,4 +131,9 @@ public class Album {
         return this.brani.size();
     }
 
+    public int getDurataTotale(){}
+
+
+    @Override 
+    
 }
