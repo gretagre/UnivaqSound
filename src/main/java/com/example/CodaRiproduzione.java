@@ -9,7 +9,7 @@ public class CodaRiproduzione implements Riproducibile{
     private int indiceCorrente;
     private List<Brano> braniInCoda;
     private boolean shuffle;
-    private ModalitàRepeat modalitàRepeat;git 
+    private ModalitàRepeat modalitàRepeat;
     
     public CodaRiproduzione() {
         // Costruttore della coda di riproduzione
