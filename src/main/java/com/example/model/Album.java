@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Album {
-    //aggiungi riga
+    
+    private static final long serialVersionUID = 1L; //serializzazione 
 
     private String titolo;
     private int annoPubblicazione;
@@ -34,7 +35,7 @@ public class Album {
         if(brani != null){
             for(Brano corrente: brani){
                 if(corrente != null){
-                    aggiungiBrano(brano);
+                    aggiungiBrano(corrente);
                 }
             }
         }
@@ -131,20 +132,22 @@ public class Album {
         return this.brani.size();
     }
 
-    public int getDurataTotale(){}
+    public int getDurataTotale(){
+        return this.brani.stream().mapToInt(Brano::getDurata).sum();
+    }
 
 
 
     @Override
     public boolean equals(Object o){
-        if(this == 0) return true;
+        if(this == o) return true;
         if(!(o instanceof Album)) return false;
         Album album = (Album) o;
         return annoPubblicazione == album.annoPubblicazione && Objects.equals(titolo, album.titolo) && Objects.equals(artista, album.artista);
     }   
 
     @Override 
-    public int HashCode(){
+    public int hashCode(){
         return Objects.hash(titolo, annoPubblicazione, artista);
     }
 
