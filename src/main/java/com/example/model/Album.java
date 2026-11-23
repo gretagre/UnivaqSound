@@ -1,3 +1,4 @@
+//modifiche da fare: spostare i metodi aggiungi ecc a Service e togliere throws ai costruttori
 package com.example.model;
 
 import com.example.exception.DatiNonValidiException;
@@ -9,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Album {
+public class Album implements Serializable, Ricercabile {
     
     private static final long serialVersionUID = 1L; //serializzazione 
 
