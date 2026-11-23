@@ -1,70 +1,40 @@
-//modifiche da fare: spostare i metodi aggiungi ecc a Service e togliere throws ai costruttori
 package com.example.model;
 
-import com.example.exception.DatiNonValidiException;
-import com.example.exception.DuplicatoException;
-import com.example.exception.ElementoNonTrovatoException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
-public class Album implements Serializable, Ricercabile {
+public class Album {
     
-    private static final long serialVersionUID = 1L; //serializzazione 
-
+    private Integer id;
     private String titolo;
     private int annoPubblicazione;
     private GenereMusicale genere;
     private String copertina; //percorso testuale dell'immagine di copertina
     private Artista artista;
-    private final List<Brano> brani;
+    private List<Brano> brani = new ArrayList<>();
 
-
-    public Album(String titolo, int annoPubblicazione, GenereMusicale genere, String copertina, Artista artista) throws DatiNonValidiException {
-        setTitolo(titolo);
-        setAnnoPubblicazione(annoPubblicazione);
-        setGenere(genere);
-        setCopertina(copertina);
-        setArtista(artista);
-        this.brani = new ArrayList<>();
+    
+    public Integer getId(){
+        return id;
     }
 
-    public Album(String titolo, int annoPubblicazione, GenereMusicale genere, String copertina, Artista artista, List<Brano> brani) throws DatiNonValidiException, DuplicatoException {
-        this(titolo, annoPubblicazione, genere, copertina, artista);
-        if(brani != null){
-            for(Brano corrente: brani){
-                if(corrente != null){
-                    aggiungiBrano(corrente);
-                }
-            }
-        }
+    public void setId(Integer id){
+        this.id = id;
     }
-
-
-    //getters e setters
 
     public String getTitolo(){
         return titolo;
     }
 
-    public void setTitolo(String titolo) throws DatiNonValidiException {
-        if(titolo == null || titolo.trim().isEmpty()){
-            throw new DatiNonValidiException("Il titolo dell'album non può essere nullo o vuoto");
-        }
-        this.titolo = titolo.trim();
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
     }
-
 
     public int getAnnoPubblicazione(){
         return annoPubblicazione;
     }
 
-    public void setAnnoPubblicazione(int annoPubblicazione) throws DatiNonValidiException {
-        if(annoPubblicazione <= 0){
-            throw new DatiNonValidiException("L'anno di pubblicazione deve essere un numero positivo");
-        }
+    public void setAnnoPubblicazione(int annoPubblicazione) {
         this.annoPubblicazione = annoPubblicazione;
     }
 
@@ -72,10 +42,7 @@ public class Album implements Serializable, Ricercabile {
         return genere;
     }
 
-    public void setGenere(GenereMusicale genere) throws DatiNonValidiException {
-        if(genere == null){
-            throw new DatiNonValidiException("Il genere musicale non può essere nullo");
-        }
+    public void setGenere(GenereMusicale genere) {
         this.genere = genere;
     }
 
@@ -84,76 +51,18 @@ public class Album implements Serializable, Ricercabile {
     }
 
     public void setCopertina(String copertina){ //campo opzionale
-        if(copertina != null){
-            this.copertina = copertina.trim();
-        }
-        else{
-            this.copertina = "";
-        }
+        this.coprtina = copertina;
     }
 
     public Artista getArtista(){
         return artista;
     }
 
-    public void setArtista(Artista artista) throws DatiNonValidiException {
-        if(artista == null){
-            throw new DatiNonValidiException("Ogni album deve essere associato a un artista");
-        }
+    public void setArtista(Artista artista) {
         this.artista = artista;
     }
 
     public List<Brano> getBrani(){
-        return Collections.unmodifiableList(brani);
-    }
-
-
-    // gestione dei brani
-
-    public void aggiungiBrano(Brano brano) throws DatiNonValidiException, DuplicatoException {
-        if(brano == null){
-            throw new DatiNonValidiException("Il brano non può essere null");
-        }
-        if(this.brani.contains(brano)){
-            throw new DuplicatoException("Il brano è già presente nell'album");
-        }
-        this.brani.add(brano);
-    }
-
-    public void rimuoviBrano(Brano brano) throws DatiNonValidiException, ElementoNonTrovatoException{
-        if(brano == null){
-            throw new DatiNonValidiException("Il brano non può essere null");
-        }
-        if(!this.brani.remove(brano)){
-            throw new ElementoNonTrovatoException("Il brano non è presente nell'album");
-        }
-    }
-
-    public int getNumeroBrani(){
-        return this.brani.size();
-    }
-
-    public int getDurataTotale(){
-        return this.brani.stream().mapToInt(Brano::getDurata).sum();
-    }
-
-
-
-    @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(!(o instanceof Album)) return false;
-        Album album = (Album) o;
-        return annoPubblicazione == album.annoPubblicazione && Objects.equals(titolo, album.titolo) && Objects.equals(artista, album.artista);
-    }   
-
-    @Override 
-    public int hashCode(){
-        return Objects.hash(titolo, annoPubblicazione, artista);
-    }
-
-    @Override 
-    public String toString(){
-        return titolo + ", " + annoPubblicazione + ", " + genere;
+        return brani;
     }
 }
