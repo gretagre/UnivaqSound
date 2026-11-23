@@ -1,14 +1,16 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import com.example.interfacce.Ricercabile;
 
-public abstract class Artista {
+public abstract class Artista implements Ricercabile {
     
     private Integer id;
     private String nomeArte;
     private String biografia;
     private GenereMusicale generePrincipale;
-    private List<Album> discografia;
+    private List<Album> discografia = new ArrayList<>();
 
     public Integer getId(){
         return id;
@@ -50,5 +52,12 @@ public abstract class Artista {
         this.discografia = discografia;
     }
 
+    @Override 
+    public boolean corrisponde(String query){
+        if (query == null || query.isBlank() || nomeArte == null){
+            return false;
+        }
+        return nomeArte.toLowerCase().contains(query.trim().toLowerCase());
+    }
 }
 

@@ -2,8 +2,9 @@ package com.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.interfacce.Ricercabile;
 
-public class Album {
+public class Album implements Ricercabile {
     
     private Integer id;
     private String titolo;
@@ -64,5 +65,17 @@ public class Album {
 
     public List<Brano> getBrani(){
         return brani;
+    }
+
+    public void setBrani(List<Brano> brani){
+        this.brani = brani;
+    }
+
+    @Override 
+    public boolean corrisponde(String query){
+        if(query == null || query.isBlank() || titolo == null){
+            return false;
+        }
+        return titolo.toLowerCase().contains(query.trim().toLowerCase());
     }
 }

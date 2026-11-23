@@ -1,6 +1,9 @@
 package com.example.model;
 
-public class Brano {
+import com.example.interfacce.Ricercabile;
+import com.example.interfacce.Riproducibile;
+
+public class Brano implements Ricercabile, Riproducibile {
 
     private Integer id;
     private String titolo;
@@ -18,6 +21,7 @@ public class Brano {
         this.id = id;
     }
 
+    @Override 
     public String getTitolo(){
         return titolo;
     }
@@ -26,11 +30,12 @@ public class Brano {
         this.titolo = titolo;
     }
 
-    public int getDurata(){
+    @Override
+    public int getDurataSecondi(){
         return durata;
     }
 
-    public void setDurata(int durata){
+    public void setDurataSecondi(int durata){
         this.durata = durata;
     }
 
@@ -64,5 +69,13 @@ public class Brano {
 
     public void setNumeroAscolti(int numeroAscolti){
         this.numeroAscolti = numeroAscolti;
+    }
+
+    @Override 
+    public boolean corrisponde(String query){
+        if (query == null || query.isBlank() || titolo == null) {
+            return false;
+        }
+        return titolo.toLowerCase().contains(query.trim().toLowerCase());
     }
 }
