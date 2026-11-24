@@ -1,10 +1,13 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.interfacce.Ricercabile;
 
-public class Album implements Ricercabile {
+public class Album implements Ricercabile, Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     private Integer id;
     private String titolo;
@@ -12,18 +15,36 @@ public class Album implements Ricercabile {
     private GenereMusicale genere;
     private String copertina; //percorso testuale dell'immagine di copertina
     private Artista artista;
-    private List<Brano> brani = new ArrayList<>();
+    private List<Brano> brani;
+
+    public Album() {
+        this.brani = new ArrayList<>();
+    }
+
+    public Album(String titolo, int annoPubblicazione, GenereMusicale genere, String copertina, Artista artista) {
+        this(null, titolo, annoPubblicazione, genere, copertina, artista);
+    }
+
+    public Album(Integer id, String titolo, int annoPubblicazione, GenereMusicale genere, String copertina, Artista artista) {
+        this.id = id;
+        this.titolo = titolo;
+        this.annoPubblicazione = annoPubblicazione;
+        this.genere = genere;
+        this.copertina = copertina;
+        this.artista = artista;
+        this.brani = new ArrayList<>();
+    }
 
     
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getTitolo(){
+    public String getTitolo() {
         return titolo;
     }
 
@@ -31,7 +52,7 @@ public class Album implements Ricercabile {
         this.titolo = titolo;
     }
 
-    public int getAnnoPubblicazione(){
+    public int getAnnoPubblicazione() {
         return annoPubblicazione;
     }
 
@@ -39,7 +60,7 @@ public class Album implements Ricercabile {
         this.annoPubblicazione = annoPubblicazione;
     }
 
-    public GenereMusicale getGenere(){
+    public GenereMusicale getGenere() {
         return genere;
     }
 
@@ -47,15 +68,15 @@ public class Album implements Ricercabile {
         this.genere = genere;
     }
 
-    public String getCopertina(){
+    public String getCopertina() {
         return copertina;
     }
 
-    public void setCopertina(String copertina){ //campo opzionale
-        this.coprtina = copertina;
+    public void setCopertina(String copertina) { //campo opzionale
+        this.copertina = copertina;
     }
 
-    public Artista getArtista(){
+    public Artista getArtista() {
         return artista;
     }
 
@@ -63,16 +84,16 @@ public class Album implements Ricercabile {
         this.artista = artista;
     }
 
-    public List<Brano> getBrani(){
+    public List<Brano> getBrani() {
         return brani;
     }
 
-    public void setBrani(List<Brano> brani){
+    public void setBrani(List<Brano> brani) {
         this.brani = brani;
     }
 
     @Override 
-    public boolean corrisponde(String query){
+    public boolean corrisponde(String query) {
         if(query == null || query.isBlank() || titolo == null){
             return false;
         }
