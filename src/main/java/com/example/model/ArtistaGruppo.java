@@ -5,8 +5,20 @@ import java.util.ArrayList;
 
 public class ArtistaGruppo extends Artista {
 
-    private List<Artista> componenti = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
 
+    private List<Artista> componenti;
+
+
+    public ArtistaGruppo() {
+        super();
+        this.componenti = new ArrayList<>();
+    }
+
+    public ArtistaGruppo(String nomeArte, String biografia, GenereMusicale generePrincipale) {
+        super(nomeArte, biografia, generePrincipale);
+        this.componenti = new ArrayList<>();
+    }
 
     public List<Artista> getComponenti(){
         return componenti;
