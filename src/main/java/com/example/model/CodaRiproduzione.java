@@ -1,16 +1,16 @@
-package com.example;
-
-import com.example.interfacce.Riproducibile;
+package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import com.example.exception.*;
+import com.example.model.interfacce.Riproducibile;
 
 public class CodaRiproduzione implements Riproducibile{
 
-    private int indiceCorrente;
-    private List<Brano> braniInCoda;
+    private int indiceCorrente = -1;
+    private List<Brano> braniInCoda = new ArrayList<>();
     private boolean shuffle;
-    private ModalitàRepeat modalitàRepeat;
+    private ModalitaRepeat modalitaRepeat;
     
     public CodaRiproduzione() {
         // Costruttore della coda di riproduzione
@@ -20,23 +20,22 @@ public class CodaRiproduzione implements Riproducibile{
         // Implementazione del metodo getTitolo
     }
     @Override
-    public void getDurataSecondi(int durataSecondi) {
-        // Implementazione del metodo getDurataSecondi
+    public void getDurata(int durataSecondi) {
+        // Implementazione del metodo getDurata
     }
-
-    public void avviaPlaylist(Playlist playlist) {
+    public void avviaPlaylist(Playlist playlist) throws PlaylistVuotaException {
         // Avvia la riproduzione della playlist
     }
-    public void avanti() {
+    public Brano avanti() {
         // Passa al brano successivo nella coda
     }
-    public void indietro() {
+    public Brano indietro() {
         // Torna al brano precedente nella coda
     }
     public void impostaShuffle(boolean shuffle) {
         // Imposta la modalità shuffle
     }
-    public void impostaRepeat(ModalitàRepeat modalitàRepeat) {
+    public void impostaRepeat(ModalitaRepeat modalitaRepeat) {
         // Imposta la modalità di ripetizione
     }
 }
