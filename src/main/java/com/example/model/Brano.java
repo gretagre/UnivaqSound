@@ -1,8 +1,9 @@
 package com.example.model;
 
 import java.io.Serializable;
-import com.example.interfacce.Ricercabile;
-import com.example.interfacce.Riproducibile;
+
+import com.example.model.interfacce.Ricercabile;
+import com.example.model.interfacce.Riproducibile;
 
 public class Brano implements Ricercabile, Riproducibile, Serializable {
 

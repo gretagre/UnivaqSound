@@ -3,7 +3,8 @@ package com.example.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.interfacce.Ricercabile;
+
+import com.example.model.interfacce.Ricercabile;
 
 public class Album implements Ricercabile, Serializable {
 
