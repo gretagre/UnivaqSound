@@ -4,10 +4,10 @@ package com.example.service;
 import java.util.Comparator;
 import java.util.List;
 
-import com.example.exception.DatiNonValidiException;
-import com.example.exception.DuplicatoException;
-import com.example.exception.ElementoNonTrovatoException;
 import com.example.model.interfacce.Ricercabile;
+import com.example.service.exception.DatiNonValidiException;
+import com.example.service.exception.DuplicatoException;
+import com.example.service.exception.ElementoNonTrovatoException;
 
 public interface CatalogoService<T extends Ricercabile> {
     

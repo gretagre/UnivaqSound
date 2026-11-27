@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.exception.DatiNonValidiException;
-import com.example.exception.DuplicatoException;
-import com.example.exception.ElementoNonTrovatoException;
+import com.example.service.exception.DatiNonValidiException;
+import com.example.service.exception.DuplicatoException;
+import com.example.service.exception.ElementoNonTrovatoException;
 
 public class Utente {
     private String nome;
@@ -19,7 +19,7 @@ public class Utente {
     private LocalDate dataDiNascita;
     private final Set<GenereMusicale> preferenzeMusicali;
     private final List<Playlist> listaPlaylist;
-    private final CronologiaAscolti cronologia;
+    private final List<CronologiaAscolti> cronologia;
 
     public Utente(String nome, String cognome, String email, LocalDate dataDiNascita) {
         this.nome = nome;
@@ -28,7 +28,7 @@ public class Utente {
         this.dataDiNascita = dataDiNascita;
         this.preferenzeMusicali = new HashSet<>();
         this.listaPlaylist = new ArrayList<>();
-        this.cronologia = new CronologiaAscolti();
+        this.cronologia = new ArrayList<>();
     }
 
     /* metodi get */
@@ -56,8 +56,8 @@ public class Utente {
         return Collections.unmodifiableList(listaPlaylist);
     }
 
-    public CronologiaAscolti getCronologia() {
-        return cronologia;
+    public List<CronologiaAscolti> getCronologia() {
+        return Collections.unmodifiableList(cronologia);
     }
 
     /* metodi set */
@@ -95,7 +95,7 @@ public class Utente {
         }
     }
 
-    public void creaPlaylist(String nome, String descrizione) throws DuplicatoException {
+    public void creaPlaylist(String nome, String descrizione) throws DuplicatoException, DatiNonValidiException {
         Playlist nuova = new Playlist(nome, descrizione);
         for (Playlist p : listaPlaylist) {
             if (p.getNome().equals(nome))
@@ -126,11 +126,11 @@ public class Utente {
             throw new DatiNonValidiException("Il brano ascoltato non può essere nullo.");
         if (durataEffettiva <= 0)
             throw new DatiNonValidiException("La durata del brano deve essere maggiore di zero.");
-        cronologia.aggiungiAscolto(brano, durataEffettiva);
+        cronologia.add(new CronologiaAscolti(brano, durataEffettiva));
     }
 
     public int tempoTotaleAscolto() {
-        return cronologia.getTempoTotaleAscolto();
+        return cronologia.stream().mapToInt(CronologiaAscolti::getDurataEffettiva).sum();
     }
 
     /**

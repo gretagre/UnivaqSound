@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.example.service.exception;
 
 /**
  * *Eccezione generata quando si tenta di avviare la riproduzione

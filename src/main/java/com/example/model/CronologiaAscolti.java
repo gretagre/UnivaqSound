@@ -1,10 +1,10 @@
 package com.example.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CronologiaAscolti {
     private final Brano brano;
-    private final LocalDataTime dataOraAscolto;
+    private final LocalDateTime dataOraAscolto;
     private final int durateEffettiva;
 
     public CronologiaAscolti(Brano brano, int durataEffettiva) {
@@ -17,7 +17,7 @@ public class CronologiaAscolti {
         return brano;
     }
 
-    public LocalDataTime getDataOraAscolto() {
+    public LocalDateTime getDataOraAscolto() {
         return dataOraAscolto;
     }
 

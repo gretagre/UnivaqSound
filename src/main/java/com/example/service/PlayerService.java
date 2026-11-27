@@ -1,7 +1,7 @@
 package com.example.service;
-import com.example.exception.AzioneNonConsentitaException;
 import com.example.model.Player;
 import com.example.model.StatoRiproduzione;
+import com.example.service.exception.AzioneNonConsentitaException;
 
 public class PlayerService {
     private Player player;

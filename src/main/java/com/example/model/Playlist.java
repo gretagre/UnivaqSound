@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.exception.DatiNonValidiException;
-import com.example.exception.ElementoNonTrovatoException;
-import com.example.exception.DuplicatoException;
+import com.example.model.interfacce.Riproducibile;
+import com.example.service.exception.DatiNonValidiException;
+import com.example.service.exception.DuplicatoException;
+import com.example.service.exception.ElementoNonTrovatoException;
 
 /* implementa riproducibile */
 public class Playlist implements Riproducibile {
@@ -98,6 +99,16 @@ public class Playlist implements Riproducibile {
     }
 
     public int durataTotale() {
-        return brani.stream().mapToInt(brano::getDurata).sum();
+        return brani.stream().mapToInt(Brano::getDurata).sum();
+    }
+
+    @Override
+    public String getTitolo() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getDurata() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

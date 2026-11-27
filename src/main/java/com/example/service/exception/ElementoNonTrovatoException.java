@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.example.service.exception;
 
 /** Eccezione sollevata quando un'operazione di ricerca, 
  * modifica o eliminazione fa riferimento ad un elemento 

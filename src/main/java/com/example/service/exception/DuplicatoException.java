@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.example.service.exception;
 
 /**
  * Eccezione sollevata quando si tenta di inserire un elemento
